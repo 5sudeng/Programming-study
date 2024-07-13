@@ -1,6 +1,6 @@
 # Queue
 - "FIFO (First In, First Out)"
-- pushed into "back" and popped from "front"
+- Pushed into "back" and popped from "front"
 
 ## C++
 
@@ -106,7 +106,7 @@ q.popleft() # 3
 q.pop() # 7
 ```
 - 내부적으로 linked list를 사용함
-+ random access의 time complexity: `O(n)`
+    - random access의 time complexity: `O(n)`
 
 또는
 
