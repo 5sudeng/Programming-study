@@ -3,15 +3,13 @@
 - node가 red or black color를 갖게 함으로써 어떤 path가 다른 path의 2배의 길이가 될 수 없도록 강제함
   ⇒ Approximately balanced
 
-<aside>
-💡 **Red-Black Properties**
+**Red-Black Properties**
 
 1. 모든 노드는 red or black
 2. root는 black
 3. 모든 leaf(NIL)은 black
 4. 만약 node가 red면 두 children은 black 이어야 함
 5. 모든 node에서 simple path 상에 있는 black node의 수가 같아야 함
-</aside>
 
 ### Not Completely Balanced
 
@@ -65,9 +63,10 @@ RB-Insert_Fixup(T,z)
 ```
 
 - T.nill
+
   - T의 nil 은 sentinel로, node x 의 NIL child를 마치 ordinary node인 것처럼 취급할 수 있게 해줌
   - 모든 leaves들은 root의 parent임
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/a317e950-13eb-4c51-8bd7-1cd9ce9881af/Untitled.png)
+
 - Left rotation
   ```cpp
   LEFT-ROTATE(T,x)
@@ -85,7 +84,6 @@ RB-Insert_Fixup(T,z)
   y.left = x // y는 right child가 됨
   x.p = y
   ```
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/785b3caa-0a5f-4774-a7f5-0f1833307cce/Untitled.png)
 
 ### **Insertion 이후 RBT의 5가지 조건을 만족하는지 확인**
 
@@ -115,7 +113,7 @@ RB-Insert_Fixup(T,z)
     - 다만, A,B의 문제가 2칸 위인 C와 C.p 간의 문제로 이동했음을 알 수 있음. 이렇게 쭉 root까지 이동하게 되면 결국 마지막에는 root의 색만 그냥 black으로 변경해주면 끝남
     - 조건 5인 black height도 바뀌지 않음. 색 변경 전이나 후 모두 NIL 노드까지 가는 경로의 black node의 수는 동일함. C위에서 오던 중이라고 생각하고 아래로 내려가면서 black의 수를 세어보면 똑같음
 - **CASE2, 3) z의 삼촌 y가 Black인 경우**
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/2705e8c1-e3e1-4526-abac-95dc6d613b71/Untitled.png)
+  (https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/2705e8c1-e3e1-4526-abac-95dc6d613b71/Untitled.png)
   - 삼촌 y는 NIL도 가능하기 때문에 검정 동그라미로 표현하지는 않음. 어쨋든 black이라고 생각하면 됨
   - **case2) z가 오른쪽 자식인 경우**
     - z.p에 대해 left-rotation 한 후 원래 z.p인 A를 z로 변경 → 이후 case3으로 진행
@@ -157,10 +155,6 @@ while z.p.color == RED // z의 부모가 RED라서 RED-RED 충돌
 			LEFT-ROTATE(T, z.p.p)
 T.root.color = BLACK
 ```
-
-### **예시**
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/11e43b01-ab1d-4ee5-85b7-8ed864ad7337/Untitled.png)
 
 ### **시간복잡도**
 
@@ -209,32 +203,11 @@ if y-original-color == BLACK
 	RB-DELETE-FIXUP(T, x) // fixup을 부를 때 x를 기준으로 부름
 ```
 
-- left child가 NIL인 경우
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/5aef2de1-00a7-440a-9566-7991b6d54771/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/f0cf5a71-a74e-4321-b5bb-a88b8d0fc0dc/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/12c2b810-2b91-48cc-85df-40951cdc4cb5/Untitled.png)
-- right child가 NIL인 경우
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/8c418bd3-b262-45c0-bcd9-6f3c134a3d30/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/3d13cf4f-0728-4ae2-9d16-f206105e9d95/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/e30734e6-a426-4477-be9f-228efff20274/Untitled.png)
-- child가 둘 다 있는 경우
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/61ac019a-f0c6-4e6a-8c83-346d2df6c4e7/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/6fca574d-42e2-4692-ae2c-208733854dbc/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/7a090bec-26ff-4911-b5cb-444228083509/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/c84fa226-e8b1-43ff-917e-98c787336873/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/b3f324e2-c8de-4faa-8cea-fb6b0d1d89fc/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/db26373d-6a81-48af-97c8-4d7529711fe5/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/471f1857-d868-4d39-8fde-8ca418d0d2a7/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/3c047742-fcc7-432c-b5a6-3bc73f1b2c28/Untitled.png)
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/ba798fc1-5d95-4c5e-b06c-82f2b4169712/Untitled.png)
-
 ### **RB-DELETE-Fixup을 호출해야 하는 경우**
 
 1. **삭제된 노드가 RED라면 그냥 종료**
    (RED는 연속할 수 없으므로, RED의 자식과 부모는 BLACK일 것이며, 따라서 중간의 RED를 지워도 BALCK-BLACK의 연속은 문제되지 않음)
 2. **삭제된 노드가 BLACK이었다면 RB-DELETE-Fixup을 호출해야 함**
-
-   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/1e5e9842-8e75-4947-9da3-7cfcf9f6b2f2/Untitled.png)
 
    - 중간의 BLACK 노드를 삭제하면 RED-RED 충돌이 발생하여 조건 4를 위반
    - 중간의 BLACK 하나가 사라졌으므로 조건 5도 위반
@@ -252,19 +225,13 @@ y : 삭제할 노드 / x : y의 자식
 
    1. `노드 x에 “extra black”을 부여해서 일단 조건 5를 억지로라도 만족시킴`
 
-      ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/5eae7d50-2b7b-47dd-a379-d051404c91c2/Untitled.png)
-
       ⇒ 검정 노드가 하나 삭제되어 black height가 문제되는데, 이를 막고자 한 노드에 2개의 black 노드를 삽입했다고 우선 생각
 
 ### **RB-Delete-Fixup 구현**
 
 `IDEA1`: extra black 을 트리의 위쪽으로 올려보낸다. 올려보내다가 해당노드 x가 red&black이 되면 그냥 black 노드로 만들고 끝낸다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/fff54c0d-4617-4678-be31-ef467f9a2229/Untitled.png)
-
 `IDEA2` : 계속 올리다가 root에 도달하면 그냥 extra black을 제거한다. (그림에서 가장 사단이 root라고 가정)
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/70c2f0ca-a11e-419c-9476-c8f8d253cb54/Untitled.png)
 
 **Loop Invariant (함수가 도는 동안의 불변의 조건)**
 
@@ -277,7 +244,6 @@ y : 삭제할 노드 / x : y의 자식
 x가 부모가 왼쪽 자식인 경우로 설명 (오른쪽 자식인 경우, 좌우만 바꿔주면 됨)
 
 - **CASE1) w가 red인 경우**
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/71093b04-eb29-4ca9-b4db-27f8c8c3a871/Untitled.png)
   - w의 자식들은 black (이들은 NIL일 수 없음. NIL인 경우 조건 5에 위배)
   - **방법**
     1. w인 D노드를 black으로 변경
@@ -285,28 +251,22 @@ x가 부모가 왼쪽 자식인 경우로 설명 (오른쪽 자식인 경우, �
     3. x.p를 기준으로 left-rotation (기존 w의 자식이었던 C는 B의 자식으로 편입됨)
     4. case 2, 3, 4로 진행됨. case1은 해결책이 아니라, 해결하기 위한 form을 만드는 것
 - **CASE2) w가 BLACK, w의 자식들도 BLACK**
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/1f7de940-4e12-444c-b887-c2d4e3c76970/Untitled.png)
   - 회색 노드는 BLACK일 수도 있고, RED일 수도 잇음
   - **방법**
     1. x의 extra-black을 x.p인 B에 전달하고, w를 RED로 바꿈.
     2. x.p인 B를 새로운 x로 지정
     3. 만약 case1에서 이 경우에 도착했다면 x.p는 red였고, 따라서 새로운 **x는 red&black이 되었음. ⇒ 그냥 BLACK으로 변경 후 끝**
 - **CASE3) w는 BLACK, w의 왼쪽자식이 red, 오른자식이 black**
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/93ef22b8-8282-4065-94b6-053049c87b63/Untitled.png)
   - **방법**
     1. w를 red로 변경하고 w의 왼쪽자식을 black으로 변경
     2. w에 대해 right-rotation 적용
     3. x의 새로운 형제 w는 오른쪽 자식이 red이므로 CASE 4에 해당하는 상황
 - **CASE4) w는 BLACK, w의 오른자식이 red**
-  ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/191e39e9-5cc4-48c8-81bf-dfa798478183/Untitled.png)
+
   - **방법**
     1. w와 B의 색을 교환 (w의 색을 x.p인 B의 색으로 변경, B의 색을 w의 색인 black으로 변경)
     2. w의 오른쪽 자식(E)을 black으로 변경
     3. x.p에 대해 left-rotation 적용 후, x의 extra black을 제거한 후 종료 (따라서 black-height 유지 가능)
-
-### **예시**
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/4ddcc5c0-5be8-411b-afd8-e036e70387be/e273ae14-9f03-4734-8688-1b855f8c66c8/Untitled.png)
 
 - 진한 회색 노드가 red, 회색은 red&black 또는 black&black임
 
