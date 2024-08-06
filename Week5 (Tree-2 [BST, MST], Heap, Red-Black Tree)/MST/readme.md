@@ -1,10 +1,14 @@
-# Minimum Spanning Tree
+# Minimum Spanning Tree - CMY
+
 When you want to find a way to **connect every node** in a graph in the **least-cost** possible way
+
 - Spanning tree of undirected, connected, weighted graph with minimum total weight, $w(T) = \sum_{(u, v)\in T}w(u, v)$
 
 ## Prim's algorithm
-- cost가 가장 작은 node 골라서 (**Greedy!**) 인접한 애들과 모두 `relax` 진행 
+
+- cost가 가장 작은 node 골라서 (**Greedy!**) 인접한 애들과 모두 `relax` 진행
 - $O((E+V)logV) = O(ElogV)$
+
 ```
 Initialize connection cost of each node to “inf” and “unmark” them
 Choose one node v, and set cost[v]=0, prev[v]=0
@@ -18,7 +22,8 @@ While there are unmarked nodes
 ```
 
 ### Implementation
-``` C++
+
+```C++
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -33,10 +38,10 @@ void primsAlgorithm(const vector<vector<int>>& graph) {
     vector<int> cost(n, INF);
     vector<int> prev(n, -1);
     vector<bool> marked(n, false);
-    
+
     // Choose the first node
     cost[0] = 0;
-    
+
     for (int i = 0; i < n - 1; ++i) {
         int u = -1;
         for (int j = 0; j < n; ++j) {
@@ -64,7 +69,7 @@ void primsAlgorithm(const vector<vector<int>>& graph) {
 }
 ```
 
-``` C
+```C
 #include <stdio.h>
 #include <limits.h>
 #include <stdbool.h>
@@ -116,7 +121,7 @@ void primsAlgorithm(int graph[V][V]) {
 }
 ```
 
-``` Python
+```Python
 def prims_algorithm(graph):
     n = len(graph)  # Number of nodes
     cost = [sys.maxsize] * n
@@ -144,9 +149,11 @@ def prims_algorithm(graph):
 ```
 
 ## Kruskal's algorithm
+
 - edge 기준으로 오름차순 정렬하고, 순서대로 뽑아서 떨어져 있으면 연결
 - `disjoint-set` data structure를 이용해야 함
 - $O(ElogE)$, but since $|E| \leq |V|^2, log|E| = O(logV)$ &rarr; $O(ElogV)$
+
 ```
 A = empty set
 for each v in G.V
@@ -160,9 +167,9 @@ for each edge (u, v) from sorted list
 return A
 ```
 
-
 ### Implementation
-``` C++
+
+```C++
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -232,7 +239,7 @@ vector<Edge> kruskal(int n, vector<Edge>& edges) {
 }
 ```
 
-``` C
+```C
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -307,7 +314,7 @@ void kruskal(int n, Edge edges[], int e_count) {
 }
 ```
 
-``` Python
+```Python
 class DisjointSet:
     def __init__(self, n):
         self.parent = list(range(n))

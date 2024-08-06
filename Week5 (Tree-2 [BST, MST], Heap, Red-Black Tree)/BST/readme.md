@@ -1,16 +1,18 @@
-# Binary Search Tree
+# Binary Search Tree - CMY
 
 ![BST](https://img1.daumcdn.net/thumb/R1280x0/?scode%3Dmtistory2%26fname%3Dhttps%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbCe3QD%2Fbtq2ytHuN1Z%2FAi82KHYBlgY01j9hbwjOO1%2Fimg.png)
+
 - Rooted binary tree with two properties
-    - For every node $x$, $x$'s value is unique in the **whole** tree
-    - Every node in the **left** subtree has value **less** than $x$'s value and every node in the **right** subtree has value **greater** than $x$'s value
+
+  - For every node $x$, $x$'s value is unique in the **whole** tree
+  - Every node in the **left** subtree has value **less** than $x$'s value and every node in the **right** subtree has value **greater** than $x$'s value
 
 - Operations
-    - `search()`
-    - `insert(int x)`
-    - `delete(int x)`
+  - `search()`
+  - `insert(int x)`
+  - `delete(int x)`
 
-``` Python
+```Python
 class TreeNode():
     def __init__(self, x: int):
         self.val = x
@@ -37,7 +39,7 @@ class BST():
     def __insertHelp(self, curnode: TreeNode, x: int) -> TreeNode:
         if not curNode:
             return TreeNode(x)
-        
+
         if x < curNode.val:
             curNode.left = self.__inesrtHelp(curNode.left, x)
         elif x > curNode.val:
@@ -50,26 +52,26 @@ class BST():
         if curNode.right == None:
             return curNode.val
         else:
-            return self.__findMax(curNode.right)  
+            return self.__findMax(curNode.right)
     def __deleteHelp(self, curNode: TreeNode, x: int) -> TreeNode:
         if not curNode:
             return curNode
-        
+
         if x < curNode.val:
             curNode.left = self.__deleteHelp(curNode.left, x)
         elif x > curNode.val:
-            curNode.right = self.__deleteHelp(curNode.right, x)        
+            curNode.right = self.__deleteHelp(curNode.right, x)
         else:
             # No child
             if curNode.left == None and curNode.right == None:
                 return None
-            
+
             # One child
             elif curNode.left and curNode.right == None:
                 return curNode.left
             elif curNode.left == None and curNode.right:
                 return curNode.right
-            
+
             # Two children
             else:
                 leftLargest = self.__findMax(curNode.left)
@@ -82,7 +84,7 @@ class BST():
 
 ```
 
-``` C
+```C
 // C program to implement binary search tree
 #include <stdio.h>
 #include <stdlib.h>
@@ -199,14 +201,14 @@ struct BinaryTreeNode* delete (struct BinaryTreeNode* root, int x) {
 }
 ```
 
-``` C++
+```C++
 #include <iostream>
 using namespace std;
 
 struct Node {
     int key;
     Node* left;
-    Node* right;    
+    Node* right;
     Node(int item) {
         key = item;
         left = NULL;
@@ -224,18 +226,18 @@ Node* search(Node* root, int key) {
 }
 
 Node* insert(Node* node, int key) {
-      if (node == NULL) 
-        return new Node(key);    
-    
-    if (node->key == key) 
+      if (node == NULL)
+        return new Node(key);
+
+    if (node->key == key)
         return node;
 
-    if (node->key < key) 
+    if (node->key < key)
         node->right = insert(node->right, key);
 
-    else 
+    else
         node->left = insert(node->left, key);
-    
+
     return node;
 }
 
@@ -243,7 +245,7 @@ Node* getSuccessor(Node* curr)
 {
     curr = curr->right;
     while (curr != NULL && curr->left != NULL)
-        curr = curr->left; 
+        curr = curr->left;
     return curr; // leftmost node from right subtree
 }
 

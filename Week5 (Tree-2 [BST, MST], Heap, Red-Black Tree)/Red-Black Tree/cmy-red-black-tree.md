@@ -1,26 +1,30 @@
 # Red-Black Tree
 
 ![RBT](https://www.google.com/url?sa%3Di%26url%3Dhttps%3A%2F%2Fwalkccc.me%2FCLRS%2FChap13%2F13.1%2F%26psig%3DAOvVaw2v7FOL1bnx77xcXv1sFLtM%26ust%3D1722492350332000%26source%3Dimages%26cd%3Dvfe%26opi%3D89978449%26ved%3D0CBEQjRxqFwoTCICysJfO0IcDFQAAAAAdAAAAABAI)
+
 - BST with color bit, **RED** or **BLACK** &rarr; approximately balanced
 - Red-Black properties
-    1. Every node is either **red** or **black**
-    2. The root is **black**
-    3. Every leaf `NIL` is **black**
-    4. If a node is **red**, then both its children are **black**        
-    5. For each node, all simple paths from the node to descendant leaves contain the same number of **black** nodes
-    &rarr; If a **red** node has any child, it must have **two** children and they must be **black**
-    &rarr; If a **black** node has only one child, that child must be a **red** node with its children `NIL`
+
+  1. Every node is either **red** or **black**
+  2. The root is **black**
+  3. Every leaf `NIL` is **black**
+  4. If a node is **red**, then both its children are **black**
+  5. For each node, all simple paths from the node to descendant leaves contain the same number of **black** nodes
+     &rarr; If a **red** node has any child, it must have **two** children and they must be **black**
+     &rarr; If a **black** node has only one child, that child must be a **red** node with its children `NIL`
 
 - Operations
-    - `LeftRotate(T, x)`, `RightRotate(T, x)`
-    - Insertion: `Insert(T, z)`, `InsertFixup(T, z)`
-    - `Transplant(T, u, v)`
-    - Deletion: `Delete(T, z)`, `DeleteFixup(T, x)`
+  - `LeftRotate(T, x)`, `RightRotate(T, x)`
+  - Insertion: `Insert(T, z)`, `InsertFixup(T, z)`
+  - `Transplant(T, u, v)`
+  - Deletion: `Delete(T, z)`, `DeleteFixup(T, x)`
 
 ## Pseudocode
+
 ### Insertion
 
 `LEFT-ROTATE(T, x)`
+
 ```
 y = x.right
 x.right = y.left
@@ -38,6 +42,7 @@ x.p = y
 ```
 
 `RB-INSERT(T, z)`
+
 ```
 x = T.root
 y = NIL
@@ -62,6 +67,7 @@ RB-INSERT-FIXUP(T, z)
 ```
 
 `RB-INSERT-FIXUP(T, z)`
+
 ```
 while z.p.color == RED
     if z.p == z.p.p.left
@@ -78,7 +84,7 @@ while z.p.color == RED
             z.p.color = BLACK // Case 3
             z.p.p.color = RED
             RIGHT-ROTATE(T, z.p.p)
-    else 
+    else
         // “right” and “left” exchanged
 T.root.color = BLACK
 ```
@@ -86,6 +92,7 @@ T.root.color = BLACK
 ### Deletion
 
 `TRNASPLANT(T, u, v)`
+
 ```
 if u.p == T.NIL
     T.root = v
@@ -97,6 +104,7 @@ v.p = u.p
 ```
 
 `RB-DELETE(T, z)`
+
 ```
 y = z
 y-original-color = y.color
@@ -121,6 +129,7 @@ if y-original-color == BLACK
 ```
 
 `RB-DELETE-FIXUP(T, x)`
+
 ```
 while x != T.root && x.color == BLACK
     if x == x.p.left
@@ -144,8 +153,7 @@ while x != T.root && x.color == BLACK
             w.right.color = BLACK
             LEFT-ROTATE(T, x.p)
             x = T.root
-    else 
+    else
         // “right” and “left” exchanged
 x.color = BLACK
 ```
-
