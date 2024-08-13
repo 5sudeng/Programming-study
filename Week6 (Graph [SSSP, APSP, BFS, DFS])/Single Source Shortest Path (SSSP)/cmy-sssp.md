@@ -39,7 +39,7 @@ while (toVisit is not empty) {
 - Generalization of BFS to **weighted** graphs
 - **`Idea`**
     - Repeatedly select vertex `u` from $V-S$ that is *lightest* &rarr; **Greedy!!**
-        where, S: set of vertices whose final shortest-path weights from source s have been determined
+        - where, S: set of vertices whose final shortest-path weights from source `s` have been determined
     - Add `u` into S
     - Relax all edges leaving `u`
 - $O(VlogV + ElogV) = O(ElogV)$ with priority queue
