@@ -8,7 +8,7 @@ class Shape{
     public:
 
     Shape(){}
-    virtual ~Shape(){} // 꼭 virtual 해야 함. 상속이라면.
+    virtual ~Shape(){cout<<"Shape destructor"<<endl;} // 꼭 virtual 해야 함. 상속이라면.
     virtual double calc_area() =0; // for abstract class : pure virtual function
     virtual string get_name() =0;
 
@@ -22,7 +22,7 @@ class Rectangle: public Shape{
         double width;
         double height;
         Rectangle(double w, double h): width(w), height(h) {};
-        ~Rectangle(){}
+        ~Rectangle(){cout<<"Rectangular destructor"<<endl;}
         double calc_area() override { return width*height;}
         string get_name() override {return "Rectangle";} // 굳이 여기다가 virtual을 쓰지 않아도 됨.
 
@@ -34,6 +34,7 @@ class Square : public Rectangle{
     public:
 
         Square(double w): Rectangle(w, w){}
+        ~Square(){cout<<"Square destructor"<<endl;}
         string get_name() override{return "Square";} // override를 씀으로써 이게 가장 최신 함수로 반영됨.
 };
 
@@ -45,7 +46,7 @@ class Triangle: public Shape{
         double c;
 
         Triangle(double a, double b, double c): a(a), b(b), c(c){};
-        ~Triangle(){}
+        ~Triangle(){cout<<"Triangle destructor"<<endl;}
         double calc_area() override {
             double s = (a+b+c) /2;
             return sqrt(s*(s-a)*(s-b)*(s-c));
@@ -60,7 +61,7 @@ class Triangle: public Shape{
 class RightTriangle: public Triangle{
     public:
         RightTriangle(double a, double b): Triangle(a, b, sqrt(a*a+b*b)){}
-        ~RightTriangle(){}
+        ~RightTriangle(){cout<<"RightTriangle destructor"<<endl;}
         double calc_area() override{
             return (a*b)/2;
         }
@@ -101,3 +102,22 @@ int main(){
 
     return 0;
 }
+
+//destrctor call
+
+/*
+
+RightTriangle destructor
+Triangle destructor
+Shape destructor
+
+Triangle destructor
+Shape destructor
+
+Square destructor
+Rectangular destructor
+Shape destructor
+
+Rectangular destructor
+Shape destructor
+*/
