@@ -127,7 +127,7 @@ int main() {
     cout << pikachu.getHP() << endl; // BasePokemon // 200
     cout << pikachu.electriclevel << endl; // ElectricPokemon // 10
     cout << pikachu.cry << endl; // Pikachu
-    // Output: 100  10  Pika pika!
+    // Output: 200  10  Pika pika!
 
     // ElectricPokemon electropokemon; // 사용 불가 abstract class여서(왜? pure virtual function정의 안했거든)
 
