@@ -75,7 +75,7 @@ class LinkedList:
         cur_node = self.first
         prev = None
 
-        while(cur_node.next): # 찾을 동안
+        while(cur_node): # 찾을 동안
 
             if cur_node.val == val:#찾음
 
